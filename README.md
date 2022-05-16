@@ -9,7 +9,7 @@ npm install blessed
 ```
 
 ```
-npm index.js
+node index.js
 ```
 
 
