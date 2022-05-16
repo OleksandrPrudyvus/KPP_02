@@ -121,9 +121,6 @@ const StartGame = () => {
 
 StartGame();
 
-/************************************
-Tick function (Re-render board)
-************************************/
 setInterval(() => {
   changeBoard(GameBoard);
   currentGame = GameBoard.slice(0);
