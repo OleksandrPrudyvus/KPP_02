@@ -1,5 +1,5 @@
 module.exports.points = {
-	"current": [
+	/*"current": [
 		 [1, 5]
 		,[1, 6]
 		,[2, 5]
@@ -36,5 +36,15 @@ module.exports.points = {
 		,[25, 2]
 		,[25, 6]
 		,[25, 7]
-	]
+	]*/
+	'current': getRandomInt(10000)
 }
+
+function getRandomInt(number){
+	let arr = new Array();
+	for(let x = 0; x < number; x+=1){
+		arr[x] = [Math.floor(Math.random()* (99 - 1) + 1), Math.floor(Math.random() * (99 - 1) + 1)]
+	}
+	return arr
+}
+console.log(getRandomInt(100))
