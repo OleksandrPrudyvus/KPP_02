@@ -1,5 +1,7 @@
+'use strict'; 
+
 const blessed = require('blessed');
-const gosper = require('./points.js').points
+let gosper = require('./points.js').points
 const current = '*';
 
 
@@ -25,6 +27,10 @@ const box = blessed.box({
 
 screen.append(box);
 
+screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+  return process.exit(0);
+});
+
 let GameBoard = [];
 let currentGame;
 
@@ -43,6 +49,19 @@ let makeGamebox = () => {
  }
  setBoard(gosper);
 };
+
+box.key('enter', function(ch, key) {
+  screen.render();
+  cleanScreen()
+  screen.render();
+  
+  const fs = require('fs'); 
+  let rawdata = fs.readFileSync('points.json'); 
+  gosper = JSON.parse(rawdata)
+  setBoard(gosper)
+  box.setContent(currentGame)
+  screen.render();
+});
 
 let setBoard = (pattern) => {
   // Добавлення перших точок
@@ -91,6 +110,17 @@ const changeBoard = (game) => {
       }
     }
   }
+}
+
+// Функція очищення екрану
+function cleanScreen(){
+  for(let i=0; i<99; i++){
+    for(let j=0; j<99; j++){
+      GameBoard[i][j] = ' '
+    }
+  }
+  currentGame = JSON.parse(JSON.stringify(GameBoard));
+  joinArray(currentGame);
 }
 
 // З'єднання масивів
