@@ -1,7 +1,7 @@
 'use strict'; 
 
 const blessed = require('blessed');
-let gosper = require('./points.js').points
+let gosper = getRandomInt(10000);
 const current = '*';
 
 
@@ -34,6 +34,13 @@ screen.key(['escape', 'q', 'C-c'], function(ch, key) {
 let GameBoard = [];
 let currentGame;
 
+function getRandomInt(number){
+	let arr = new Array();
+	for(let x = 0; x < number; x+=1){
+		arr[x] = [Math.floor(Math.random()* (99 - 1) + 1), Math.floor(Math.random() * (99 - 1) + 1)]
+	}
+	return {'current': arr}
+}
 // Створення ігрового поля
 let makeGamebox = () => {
  for (let x = 0; x < 100; x++) {
